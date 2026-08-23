@@ -17,7 +17,6 @@ const TYPEMAP = {
 }
 
 const title = computed(()=>TYPEMAP[props.hotType])
-console.log(title.value)
 const getHotList = async()=>{
     const res = await fetchHotGoodsAPI({
         id:route.params.id,
