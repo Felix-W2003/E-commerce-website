@@ -1,7 +1,4 @@
 <script setup>
-import {getSecondCategoryAPI} from '@/apis/category'
-import { onMounted, ref, watch } from 'vue';
-import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 import GoodsItem from '../Home/components/GoodsItem.vue';
 import {useBanner} from '@/views/Category/composables/useBanner.js'
 import {useCategory} from '@/views/Category/composables/useCategory.js'
