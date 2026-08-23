@@ -19,6 +19,8 @@ declare module 'vue' {
     ElImage: typeof import('element-plus/es')['ElImage']
     ElImg: typeof import('element-plus/es')['ElImg']
     ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
