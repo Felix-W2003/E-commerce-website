@@ -17,7 +17,12 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver({importStyle:'sass'})],
     }),
+    
   ],
+  server: {
+    host: '0.0.0.0', //强制监听全部网卡
+    port: 5173
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
