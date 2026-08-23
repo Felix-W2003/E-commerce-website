@@ -2,46 +2,17 @@
 import {getSecondCategoryAPI} from '@/apis/category'
 import { onMounted, ref, watch } from 'vue';
 import { onBeforeRouteUpdate, useRoute } from 'vue-router';
-import { getBannerAPI } from '@/apis/home';
 import GoodsItem from '../Home/components/GoodsItem.vue';
-const secondCategoryList = ref({})
-const route = useRoute()
-const getSecondCategory = async (id = route.params.id)=>{
-    const res = await getSecondCategoryAPI(id)
-    secondCategoryList.value = res.result
-    // console.log(route)
-    // console.log(res)
-}
+import {useBanner} from '@/views/Category/composables/useBanner.js'
+import {useCategory} from '@/views/Category/composables/useCategory.js'
 
-onMounted(()=>getSecondCategory())
 // watch(route,()=>{
 //     getSecondCategory()
 // })
 
+const {secondCategoryList} = useCategory()
+const {bannerList} = useBanner()
 
-//目标：路由参数变化的时候，可以把分类数据接口重新发送
-onBeforeRouteUpdate((to)=>{
-    console.log('route has changed')
-
-    //问题：使用最新的路由参数请求最新的参数
-
-    console.log(to)
-    getSecondCategory(to.params.id)
-})
-
-
-const bannerList = ref([])
-const getBanner = async ()=>{
-   const res = await getBannerAPI({
-    distributionSite:'2'
-   })
-
-   bannerList.value = res.result
-}
-
-onMounted(()=>{
-    getBanner()
-})
 </script>
 
 <template>
