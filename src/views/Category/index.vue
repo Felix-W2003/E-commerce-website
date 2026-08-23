@@ -3,6 +3,7 @@ import {getSecondCategoryAPI} from '@/apis/category'
 import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { getBannerAPI } from '@/apis/home';
+import GoodsItem from '../Home/components/GoodsItem.vue';
 const secondCategoryList = ref({})
 const route = useRoute()
 const getSecondCategory = async ()=>{
@@ -48,8 +49,30 @@ onMounted(()=>{
       </el-carousel-item>
     </el-carousel>
   </div>
+  
+  <div class="sub-list">
+  <h3>全部分类</h3>
+  <ul>
+    <li v-for="i in secondCategoryList.children" :key="i.id">
+      <RouterLink to="/">
+        <img :src="i.picture" />
+        <p>{{ i.name }}</p>
+      </RouterLink>
+    </li>
+  </ul>
+</div>
+<div class="ref-goods" v-for="item in secondCategoryList.children" :key="item.id">
+  <div class="head">
+    <h3>- {{ item.name }}-</h3>
+  </div>
+  <div class="body">
+    <GoodsItem v-for="good in item.goods" :good="good" :key="good.id" />
+  </div>
+</div>
     </div>
   </div>
+
+
 </template>
 
 
@@ -134,7 +157,7 @@ onMounted(()=>{
 .home-banner {
   width: 1240px;
   height: 500px;
-  margin: 0 auto;
+   margin: 0 auto;
   z-index: 98;
 
   img {
