@@ -6,7 +6,10 @@ import {ref} from 'vue'
 export const useUserStore = defineStore('user',()=>{
     //定义管理用户数据的state
     const userInfo = ref({})
-
+    //退出时清楚用户登录信息
+    const clearUserInfo = ()=>{
+        userInfo.value  = {}
+    }
     //定义获取接口数据的action函数
     const getUserInfo = async({account, password})=>{
         const res= await loginAPI({account, password})
@@ -16,7 +19,8 @@ export const useUserStore = defineStore('user',()=>{
 
     return {
         userInfo,
-        getUserInfo
+        getUserInfo,
+        clearUserInfo
     }
 },{
     persist: true,
