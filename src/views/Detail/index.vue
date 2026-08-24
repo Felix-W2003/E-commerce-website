@@ -37,7 +37,7 @@ const addCart = ()=>{
     count:count.value,
     skuId:skuObj.skuId,
     attrsText:skuObj.specsText,
-    seleted:true
+    selected:true
   })
     // 规格已经全部选择
   } else{
