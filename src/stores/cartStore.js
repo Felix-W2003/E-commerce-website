@@ -51,15 +51,22 @@ export const useCartStore = defineStore('cart',()=>{
     }
 
 
+    const isAll = computed(()=> cartList.value.every((item)=>item.selected))
 
-
+    const allCheck = (selected)=>{
+        cartList.value.forEach(item => {
+            item.selected = selected
+        });
+    }
     return {
         cartList,
         addCart,
         delCart,
         allCount,
         allPrice,
-        singleCheck
+        singleCheck,
+        isAll,
+        allCheck
     }
 },{
     persist:true,
