@@ -5,7 +5,7 @@ import {useUserStore} from './userStore'
 import {insertCartAPI,findNewCartListAPI,delCartAPI} from '@/apis/cart.js'
 export const useCartStore = defineStore('cart',()=>{
     // 定义state
-     const cartList = ref([])
+    const cartList = ref([])
     const userStore = useUserStore()
     const isLogin = computed(()=>userStore.userInfo.token)
     
@@ -115,7 +115,8 @@ export const useCartStore = defineStore('cart',()=>{
         allCheck,
         selectedCount,
         selectedPrice,
-        clearCart
+        clearCart,
+        updateNewList
     }
 },{
     persist:true,

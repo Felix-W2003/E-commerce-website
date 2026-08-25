@@ -3,7 +3,7 @@ import {defineStore} from 'pinia'
 import {loginAPI} from '@/apis/user.js'
 import { useCartStore } from './cartStore'
 import {ref} from 'vue'
-
+import {mergeCartAPI} from '@/apis/cart.js'
 export const useUserStore = defineStore('user',()=>{
     //定义管理用户数据的state
     const userInfo = ref({})
@@ -18,6 +18,14 @@ export const useUserStore = defineStore('user',()=>{
     const getUserInfo = async({account, password})=>{
         const res= await loginAPI({account, password})
         userInfo.value = res.result
+       await mergeCartAPI(cartStore.cartList.map(item=>{
+            return {
+                skuId:item.skuId,
+                selected:item.selected,
+                count:item.count
+            }
+        }))
+        cartStore.updateNewList()
     }
     //以对象的格式把state和action return出去
 
