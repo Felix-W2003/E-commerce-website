@@ -97,8 +97,10 @@ export const useCartStore = defineStore('cart',()=>{
     const selectedPrice = computed(()=>
         cartList.value.filter((item)=>item.selected).reduce((a,c)=>a+c.count*c.price,0)
     )
-
-  
+    //清除购物车
+    const clearCart = ()=> {
+        cartList.value=[]
+    }
 
 
 
@@ -112,7 +114,8 @@ export const useCartStore = defineStore('cart',()=>{
         isAll,
         allCheck,
         selectedCount,
-        selectedPrice
+        selectedPrice,
+        clearCart
     }
 },{
     persist:true,
