@@ -18,7 +18,15 @@ const toggleFlag = ()=>{
     showDialog.value =true
 }
 onMounted(()=>getCheckInfo())
-
+const activeAddress = ref({})
+const switchAddress = (item)=>{
+    activeAddress.value = item
+}
+const confirm=()=>{
+    curAddress.value =activeAddress.value
+    showDialog.value =false
+    activeAddress.value={}
+}
 
 </script>
 
@@ -122,7 +130,7 @@ onMounted(()=>getCheckInfo())
   <!-- 切换地址 -->
   <el-dialog title="切换收货地址" width="30%" center v-model="showDialog">
   <div class="addressWrapper">
-    <div class="text item" v-for="item in checkInfo.userAddresses"  :key="item.id">
+    <div class="text item" v-for="item in checkInfo.userAddresses" @click="switchAddress(item)" :class="{active:activeAddress.id===item.id}" :key="item.id">
       <ul>
       <li><span>收<i />货<i />人：</span>{{ item.receiver }} </li>
       <li><span>联系方式：</span>{{ item.contact }}</li>
@@ -132,8 +140,8 @@ onMounted(()=>getCheckInfo())
   </div>
   <template #footer>
     <span class="dialog-footer">
-      <el-button>取消</el-button>
-      <el-button type="primary">确定</el-button>
+      <el-button @click="showDialog=false">取消</el-button>
+      <el-button type="primary" @click="confirm">确定</el-button>
     </span>
   </template>
 </el-dialog>
