@@ -10,19 +10,17 @@ export const useCartStore = defineStore('cart',()=>{
     const isLogin = computed(()=>userStore.userInfo.token)
 
 
-
     // action -- 添加addCart方法
     const addCart = async(goods)=>{
-        if(isLogin){
-            const {skuId,count} = goods
+        if(isLogin.value){
+            // console.log(isLogin,isLogin.value)
+        const {skuId,count} = goods
             //登录后加入购物车逻辑
        const it = await insertCartAPI({skuId,count})
        const res = await findNewCartListAPI()
        console.log(it,res)
        cartList.value = res.result
         }else{
-
-        
         //添加购物车操作
         //已添加过，count+1
 
